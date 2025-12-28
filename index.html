@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowPad</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <nav>
+        <div class="left"> <h2>FlowPad</h2> </div>
+        <div class="right">
+          <button id="toggle-modal"><h3>Add new Task</h3></button>
+        </div>
+      </nav>
+      <section class="board">
+        <div id="todo"  class="task-column">
+          <div class="heading">
+            <div class="left"><h3>To Do</h3></div>
+            <div class="right"><h3>Count</h3></div>
+          </div>
+        </div>
+        <div id="progress" class="task-column">
+          <div class="heading">
+            <div class="left"><h3>In Progress</h3></div>
+            <div class="right"><h3>Count</h3></div>
+          </div>
+        </div>
+        <div id="done" class="task-column">
+          <div class="heading">
+            <div class="left"><h3>Completed</h3></div>
+            <div class="right"><h3>Count</h3></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="modal add-new-task">
+      <div class="bg"></div>
+      <div class="center">
+        <input id="task-title-input"type="text" placeholder="Task Title" r/>
+        <textarea id="task-description-input" placeholder="Task Description"></textarea>
+        <button id='add-new-task' class="add-task-btn">Add Task</button>
+      </div>
+    </div>
+   <footer>
+  © 2025 Nischal Pandey · 
+  <a href="https://nischalp.com.np" target="_blank" rel="noopener noreferrer">
+    nischalp.com.np
+  </a>
+</footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
