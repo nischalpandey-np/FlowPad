@@ -1,168 +1,145 @@
-/* 
-   CSS RESET & BASE STYLES
-   */
+/*
+   RESET + THEME
+*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 
-   CSS VARIABLES (Custom Properties)
-   For easy theme management
-   */
 :root {
-    /* Color Palette */
-    --bg-color: rgba(0, 0, 0, 0.937);
-    --bg-button-color: #1a1a1a;
-    --bg-task-color: #2a2a2a;
-    --bg-column-color: #1e1e1e;
-    
-    /* Action Button Colors */
-    --delete-btn-color: #ff4d4d;        /* Red for delete actions */
-    --move-btn-color: #4a9eff;          /* Blue for move to progress */
-    --complete-btn-color: #4caf50;      /* Green for complete actions */
-    --add-btn-color: #9c27b0;           /* Purple for add actions */
-    
-    /* Text Colors */
-    --primary-text-color: #f4f4f4f1;
-    --secondary-text-color: #aaaaaa;
-    --placeholder-color: #888888;
-    
-    /* Hover States */
-    --delete-btn-hover: #ff6666;
-    --move-btn-hover: #6bb2ff;
-    --complete-btn-hover: #66bb6a;
+    --bg-color: #0f1115;
+    --bg-elevated: #171b22;
+    --bg-card: #1f252f;
+    --bg-soft: #252d39;
+
+    --primary-text-color: #f3f5fa;
+    --secondary-text-color: #b2bccb;
+    --placeholder-color: #7f8aa0;
+
+    --todo-color: #ff9800;
+    --progress-color: #4a9eff;
+    --done-color: #4caf50;
+    --add-btn-color: #9c27b0;
     --add-btn-hover: #b23fd4;
-    
-    /* Status Colors */
-    --todo-color: #ff9800;     /* Orange for To Do */
-    --progress-color: #2196f3;  /* Blue for In Progress */
-    --done-color: #4caf50;      /* Green for Completed */
-    
-    /* Spacing Variables */
-    --nav-padding: 15px 30px;
-    --section-padding: 15px 30px;
-    --padding-small: 5px;
-    --padding-medium: 10px;
-    --padding-large: 15px;
-    --padding-Xlarge: 20px;
-    --padding-XXlarge: 30px;
-    
-    /* Border Radius */
-    --border-radius-small: 5px;
-    --border-radius-medium: 10px;
-    --border-radius-large: 15px;
-    --border-radius-Xlarge: 20px;
-    
-    /* Transitions */
+    --delete-btn-color: #f05454;
+    --delete-btn-hover: #ff6868;
+    --move-btn-color: #4a9eff;
+    --move-btn-hover: #64b0ff;
+    --complete-btn-color: #4caf50;
+    --complete-btn-hover: #63c368;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --space-xs: 6px;
+    --space-sm: 10px;
+    --space-md: 14px;
+    --space-lg: 18px;
+    --space-xl: 26px;
+    --space-2xl: 34px;
+
+    --content-max-width: 1320px;
+    --border-soft: 1px solid rgba(255, 255, 255, 0.08);
     --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-medium: 0.3s ease;
 }
 
-/* 
-   BASE HTML & BODY STYLES
-   */
-html, body {
-    height: 100%;
+html,
+body {
     width: 100%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
-                 Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 
-                 'Helvetica Neue', sans-serif;
+    height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--primary-text-color);
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    color: var(--primary-text-color);
+    background:
+        radial-gradient(1200px 600px at -10% -20%, rgba(74, 158, 255, 0.12), transparent 60%),
+        radial-gradient(900px 400px at 120% 0%, rgba(156, 39, 176, 0.12), transparent 55%),
+        var(--bg-color);
+    overflow-x: hidden;
 }
 
-/* 
-   MAIN CONTENT AREA
-   */
 main {
+    width: min(100%, var(--content-max-width));
+    margin-inline: auto;
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
 }
 
-/* 
-   NAVIGATION BAR
-   */
+/*
+   NAV
+*/
 nav {
-    padding: var(--nav-padding);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: sticky;
     top: 0;
-    background-color: var(--bg-color);
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-2xl);
+    background-color: rgba(15, 17, 21, 0.9);
+    border-bottom: var(--border-soft);
+    backdrop-filter: blur(8px);
 }
 
 nav .left h2 {
     color: var(--move-btn-color);
     font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 nav button {
-    background-color: var(--add-btn-color);
-    cursor: pointer;
     border: none;
-    outline: none;
     color: var(--primary-text-color);
-    padding: var(--padding-medium) var(--padding-large);
-    border-radius: var(--border-radius-medium);
+    background-color: var(--add-btn-color);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 1rem;
+    min-height: 44px;
+    font-size: 1rem;
     font-weight: 600;
-    transition: all var(--transition-fast);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    touch-action: manipulation;
 }
 
-nav button:hover {
-    background-color: var(--add-btn-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-nav button:active {
-    transform: translateY(0);
-}
-
-/* 
-   TASK BOARD SECTION
-   */
+/*
+   BOARD + COLUMNS
+*/
 section.board {
-    padding: var(--section-padding);
+    flex: 1;
     display: flex;
-    flex-grow: 1;
-    justify-content: space-between;
-    gap: var(--padding-XXlarge);
+    align-items: stretch;
+    gap: var(--space-xl);
+    padding: var(--space-md) var(--space-2xl);
+    padding-bottom: calc(var(--space-2xl) + env(safe-area-inset-bottom));
     overflow-x: auto;
 }
 
-/* 
-   TASK COLUMNS
-   */
 .task-column {
-    background-color: var(--bg-column-color);
-    flex-grow: 1;
+    flex: 1 1 0;
     min-width: 300px;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
-    gap: var(--padding-medium);
-    border-radius: var(--border-radius-large);
-    padding: var(--padding-large);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all var(--transition-normal);
+    gap: var(--space-sm);
+    background-color: var(--bg-elevated);
+    border: var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    transition: background-color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium);
 }
 
-/* Column-specific colors */
 #todo {
     border-top: 4px solid var(--todo-color);
 }
@@ -175,33 +152,26 @@ section.board {
     border-top: 4px solid var(--done-color);
 }
 
-/* Drag and Drop hover effect */
 .task-column.hover-over {
-    border: 2px dashed var(--primary-text-color);
-    scale: 1.02;
-    transition: all var(--transition-slow);
+    border-color: rgba(255, 255, 255, 0.35);
     background-color: rgba(255, 255, 255, 0.05);
+    transform: scale(1.01);
 }
 
-/* 
-   COLUMN HEADINGS
-   */
 .task-column .heading {
-    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: var(--padding-small) 0;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: var(--padding-medium);
+    align-items: center;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: var(--border-soft);
+    margin-bottom: var(--space-xs);
 }
 
 .task-column .heading .left h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.2rem;
 }
 
-/* Column title colors */
 #todo .heading .left h3 {
     color: var(--todo-color);
 }
@@ -215,40 +185,34 @@ section.board {
 }
 
 .task-column .heading .right {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: var(--padding-small) var(--padding-medium);
-    border-radius: var(--border-radius-small);
-    font-weight: 600;
     min-width: 40px;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 4px 10px;
 }
 
-/* 
-   INDIVIDUAL TASK CARDS
-   */
+.count-value {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/*
+   TASK CARDS
+*/
 .task {
-    background-color: var(--bg-task-color);
-    padding: var(--padding-large);
-    border-radius: var(--border-radius-medium);
+    background-color: var(--bg-card);
+    border: var(--border-soft);
+    border-left: 4px solid transparent;
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
     display: flex;
     flex-direction: column;
-    gap: var(--padding-medium);
-    cursor: grab;
-    transition: all var(--transition-normal);
-    border-left: 4px solid transparent;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    gap: var(--space-sm);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    animation: taskAdd 0.25s ease;
 }
 
-.task:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.task:active {
-    cursor: grabbing;
-}
-
-/* Column-specific task borders */
 #todo .task {
     border-left-color: var(--todo-color);
 }
@@ -261,92 +225,70 @@ section.board {
     border-left-color: var(--done-color);
 }
 
+.task.dragging {
+    opacity: 0.65;
+}
+
 .task h2 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--primary-text-color);
-    margin-bottom: var(--padding-small);
+    font-size: 1.05rem;
+    line-height: 1.35;
 }
 
 .task p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
     color: var(--secondary-text-color);
-    line-height: 1.5;
-    flex-grow: 1;
+    word-break: break-word;
 }
 
-/* 
-   TASK BUTTONS CONTAINER
-   */
-.task .button-container {
+.task p:empty {
+    display: none;
+}
+
+.task-actions {
     display: flex;
-    gap: var(--padding-small);
-    margin-top: var(--padding-medium);
     flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-xs);
 }
 
-/* 
-   BUTTON BASE STYLES
-   */
 .task button {
-    cursor: pointer;
-    padding: var(--padding-small) var(--padding-medium);
-    border-radius: var(--border-radius-small);
+    flex: 1 1 130px;
+    min-height: 42px;
+    padding: 0.45rem 0.65rem;
     border: none;
-    font-weight: 500;
-    font-size: 0.85rem;
-    transition: all var(--transition-fast);
-    flex: 1;
-    min-width: 120px;
-    text-align: center;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+    touch-action: manipulation;
 }
 
-/* DELETE BUTTON */
 .delete-btn {
     background-color: var(--delete-btn-color);
-    color: white;
 }
 
-.delete-btn:hover {
-    background-color: var(--delete-btn-hover);
-    transform: translateY(-1px);
-}
-
-/* MOVE TO PROGRESS BUTTON */
 .move-btn {
     background-color: var(--move-btn-color);
-    color: white;
 }
 
-.move-btn:hover {
-    background-color: var(--move-btn-hover);
-    transform: translateY(-1px);
-}
-
-/* COMPLETE BUTTON */
 .complete-btn {
     background-color: var(--complete-btn-color);
-    color: white;
 }
 
-.complete-btn:hover {
-    background-color: var(--complete-btn-hover);
-    transform: translateY(-1px);
-}
-
-/* 
-   MODAL STYLES
-   */
+/*
+   MODAL
+*/
 .modal {
     position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    inset: 0;
     z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
 }
 
 .modal.active {
@@ -355,58 +297,39 @@ section.board {
 
 .modal .bg {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.25s ease;
 }
 
 .modal .center {
-    background-color: var(--bg-button-color);
-    padding: var(--padding-XXlarge);
-    border-radius: var(--border-radius-large);
+    position: relative;
+    z-index: 1;
+    width: min(520px, 100%);
+    max-height: min(90dvh, 720px);
+    overflow: auto;
+    background-color: var(--bg-elevated);
+    border: var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
     display: flex;
     flex-direction: column;
-    gap: var(--padding-large);
-    z-index: 1010;
-    width: 90%;
-    max-width: 500px;
-    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    gap: var(--space-md);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    animation: slideUp 0.3s ease;
 }
 
 .modal .center input,
 .modal .center textarea {
-    background-color: var(--bg-task-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    outline: none;
+    width: 100%;
+    background-color: var(--bg-soft);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
     color: var(--primary-text-color);
-    padding: var(--padding-large);
-    border-radius: var(--border-radius-medium);
+    padding: 0.9rem;
     font-size: 1rem;
-    transition: border-color var(--transition-fast);
-}
-
-.modal .center input:focus,
-.modal .center textarea:focus {
-    border-color: var(--move-btn-color);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .modal .center input::placeholder,
@@ -415,176 +338,225 @@ section.board {
 }
 
 .modal .center textarea {
-    min-height: 120px;
+    min-height: 110px;
     resize: vertical;
     font-family: inherit;
 }
 
-.modal .center .add-task-btn {
-    background-color: var(--add-btn-color);
-    border: none;
+.modal .center input:focus,
+.modal .center textarea:focus {
+    border-color: var(--move-btn-color);
+    box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
     outline: none;
+}
+
+.modal .center .add-task-btn {
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: var(--add-btn-color);
     color: var(--primary-text-color);
-    padding: var(--padding-large) var(--padding-Xlarge);
-    cursor: pointer;
-    border-radius: var(--border-radius-medium);
-    font-weight: 600;
+    padding: 0.8rem 1rem;
+    min-height: 44px;
     font-size: 1rem;
-    transition: all var(--transition-fast);
-    align-self: stretch;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+    touch-action: manipulation;
 }
 
-.modal .center .add-task-btn:hover {
-    background-color: var(--add-btn-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* 
-   FOOTER STYLES
-   */
+/*
+   FOOTER
+*/
 footer {
-    background-color: var(--bg-button-color);
-    color: var(--primary-text-color);
-    text-align: center;
-    padding: 1.5rem 0;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: auto;
-    line-height: 1.5;
     width: 100%;
-    flex-shrink: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--primary-text-color);
+    background-color: var(--bg-elevated);
+    border-top: var(--border-soft);
+    padding: 1.2rem 0.8rem calc(1.2rem + env(safe-area-inset-bottom));
 }
 
 footer a {
     color: var(--move-btn-color);
     text-decoration: none;
-    font-weight: 500;
-    transition: color var(--transition-fast);
+    font-weight: 600;
 }
 
-footer a:hover {
-    color: var(--move-btn-hover);
-    text-decoration: underline;
-}
-
-/* 
-   RESPONSIVE DESIGN
-   */
-
-/* Tablets and small laptops */
-@media (max-width: 1024px) {
-    section.board {
-        gap: var(--padding-large);
-    }
-    
-    .task-column {
-        min-width: 250px;
-    }
-}
-
-/* Mobile devices */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: var(--padding-medium);
-        text-align: center;
-        padding: var(--padding-large);
-    }
-    
-    nav button {
-        width: 100%;
-        margin-top: var(--padding-small);
-    }
-    
-    section.board {
-        flex-direction: column;
-        gap: var(--padding-large);
-        padding: var(--padding-large);
-        overflow-x: visible;
-    }
-    
-    .task-column {
-        width: 100%;
-        min-width: unset;
-    }
-    
-    .task-column.hover-over {
-        scale: 1.01;
-    }
-    
-    .modal .center {
-        width: 95%;
-        padding: var(--padding-large);
-    }
-    
-    .task button {
-        min-width: 100px;
-        font-size: 0.8rem;
-    }
-}
-
-/* Small phones */
-@media (max-width: 480px) {
-    nav {
-        padding: var(--padding-medium);
-    }
-    
-    nav .left h2 {
-        font-size: 1.5rem;
-    }
-    
-    section.board {
-        padding: var(--padding-medium);
-    }
-    
-    .task-column {
-        padding: var(--padding-medium);
-    }
-    
-    .task {
-        padding: var(--padding-medium);
-    }
-    
-    .task .button-container {
-        flex-direction: column;
-    }
-    
-    .task button {
-        width: 100%;
-        min-width: unset;
-    }
-    
-    .modal .center {
-        padding: var(--padding-medium);
-        gap: var(--padding-medium);
-    }
-    
-    footer {
-        padding: 1rem 0;
-        font-size: 0.8rem;
-    }
-}
-
-/* 
-   UTILITY CLASSES (Optional)
-   */
+/*
+   OPTIONAL UTILITIES
+*/
 .empty-state {
     text-align: center;
-    padding: var(--padding-Xlarge);
+    padding: var(--space-xl);
     color: var(--secondary-text-color);
     font-style: italic;
 }
 
 .empty-state::before {
-    content: "📋";
+    content: "Task";
     display: block;
-    font-size: 2rem;
-    margin-bottom: var(--padding-medium);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-sm);
 }
 
-/* Animation for task addition */
-@keyframes taskAdd {
+/*
+   INTERACTION STATES ONLY ON DEVICES THAT SUPPORT HOVER
+*/
+@media (hover: hover) and (pointer: fine) {
+    nav button:hover {
+        background-color: var(--add-btn-hover);
+        transform: translateY(-1px);
+    }
+
+    .task:hover {
+        transform: translateY(-2px);
+    }
+
+    .delete-btn:hover {
+        background-color: var(--delete-btn-hover);
+    }
+
+    .move-btn:hover {
+        background-color: var(--move-btn-hover);
+    }
+
+    .complete-btn:hover {
+        background-color: var(--complete-btn-hover);
+    }
+
+    .modal .center .add-task-btn:hover {
+        background-color: var(--add-btn-hover);
+        transform: translateY(-1px);
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+}
+
+/*
+   RESPONSIVE
+*/
+@media (max-width: 1024px) {
+    nav {
+        padding-inline: var(--space-lg);
+    }
+
+    section.board {
+        padding-inline: var(--space-lg);
+        gap: var(--space-lg);
+    }
+
+    .task-column {
+        min-width: 270px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: max(12px, env(safe-area-inset-top)) var(--space-md) var(--space-md);
+    }
+
+    nav .left,
+    nav .right {
+        width: 100%;
+    }
+
+    nav .left h2 {
+        font-size: 1.6rem;
+    }
+
+    nav button {
+        width: 100%;
+    }
+
+    section.board {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+        overflow-x: visible;
+    }
+
+    .task-column {
+        width: 100%;
+        min-width: 0;
+        border-radius: var(--radius-md);
+    }
+
+    .task-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .task button {
+        width: 100%;
+        min-height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .modal .center {
+        width: 100%;
+        border-radius: 18px 18px 0 0;
+        max-height: 92dvh;
+        padding: var(--space-lg) var(--space-md) calc(var(--space-lg) + env(safe-area-inset-bottom));
+    }
+
+    .modal .center input,
+    .modal .center textarea {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav .left h2 {
+        font-size: 1.45rem;
+    }
+
+    .task-column {
+        padding: var(--space-sm);
+    }
+
+    .task {
+        padding: var(--space-sm);
+    }
+
+    .task h2 {
+        font-size: 1rem;
+    }
+
+    .task p {
+        font-size: 0.88rem;
+    }
+
+    footer {
+        font-size: 0.82rem;
+    }
+}
+
+/*
+   ANIMATIONS
+*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -595,6 +567,24 @@ footer a:hover {
     }
 }
 
-.task {
-    animation: taskAdd 0.3s ease;
+@keyframes taskAdd {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
